@@ -156,6 +156,23 @@ class TradeData(KucoinFuturesBaseRestApi):
         """
         return self._request('GET', '/api/v1/positions')
 
+    def modify_margin_mode(self, symbol, marginMode):
+        """
+        https://www.kucoin.com/docs/rest/futures-trading/positions/modify-margin-mode
+
+        :param symbol:  (Mandatory)
+        :type: str
+        :param marginMode: Modified margin model: ISOLATED (isolated), CROSS (cross margin)
+        :type: str
+        :return:
+        """
+        params = {
+            'symbol': symbol,
+            'marginMode': marginMode
+        }
+
+        return self._request('POST', '/api/v2/position/changeMarginMode', params=params)
+        
     def modify_auto_deposit_margin(self, symbol, status=True):
         """
         https://docs.kumex.com/#enable-disable-of-auto-deposit-margin
